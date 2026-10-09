@@ -10,50 +10,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: فحص الكود
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Setup Java 17
+      - name: إعداد بيئة Java 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - name: إعداد Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Init Capacitor and Android
+      - name: تجهيز محرك أندرويد وتطبيق كورة القدم
         run: |
-          npm init -y
-          npm install @capacitor/core@latest @capacitor/cli@latest @capacitor/android@latest
           mkdir -p www
           cp index.html www/
+          npm init -y
+          npm install @capacitor/core @capacitor/cli @capacitor/android
           cat << 'EOF' > capacitor.config.json
           {
             "appId": "com.kora.alfoot",
             "appName": "كورة القدم",
-            "webDir": "www",
-            "bundledWebRuntime": false,
-            "android": {
-              "allowMixedContent": true
-            }
+            "webDir": "www"
           }
           EOF
           npx cap add android
           npx cap sync android
 
-      - name: Build APK via Gradle
+      - name: تجميع وبناء ملف الـ APK
         run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
 
-      - name: Upload APK
+      - name: رفع ملف التطبيق الجاهز
         uses: actions/upload-artifact@v4
         with:
           name: Kora-Alfoot-APK
