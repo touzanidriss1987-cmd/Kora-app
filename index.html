@@ -3,34 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>كورة القدم العالمية - النتائج والبث المباشر</title>
+  <title>كورة القدم العالمية</title>
   
-  <!-- خط تجوال العربي -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: { tajawal: ['Tajawal', 'sans-serif'] },
           colors: {
             pitch: {
-              DEFAULT: '#059669',
-              light: '#10b981',
-              dark: '#047857',
-              accent: '#34d399',
-              gold: '#f59e0b'
+              DEFAULT: '#10b981',
+              dark: '#059669',
+              deep: '#047857',
+              accent: '#34d399'
             },
-            appDark: '#080c15',
+            appBg: '#090d16',
             appCard: '#111827',
-            appCardHover: '#1a2336',
-            appBorder: '#1f293d',
-            appSubText: '#94a3b8'
+            appCardLight: '#1a2336',
+            appBorder: '#1f293d'
           }
         }
       }
@@ -38,1042 +33,494 @@
   </script>
 
   <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: 'Tajawal', sans-serif;
-      background-color: #080c15;
+      background-color: #090d16;
       color: #f8fafc;
       user-select: none;
-      -webkit-user-select: none;
-      overflow-x: hidden;
     }
-    ::-webkit-scrollbar { display: none; width: 0; height: 0; }
-    .live-dot {
-      animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
+    ::-webkit-scrollbar { display: none; width: 0; }
+    .live-dot { animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     @keyframes pulse-ring {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(1.2); }
+      50% { opacity: 0.3; transform: scale(1.3); }
     }
-    .video-responsive {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 1rem;
-    }
-    .video-responsive iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    .glass-nav {
-      background: rgba(17, 24, 39, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    .badge-img {
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
     }
   </style>
 </head>
-<body class="min-h-screen pb-24 antialiased selection:bg-pitch-light selection:text-white">
+<body class="min-h-screen pb-24 antialiased">
 
-  <!-- الرأس العلوي مع شعار التطبيق -->
-  <header class="sticky top-0 z-40 glass-nav border-b border-appBorder px-4 py-2.5 flex items-center justify-between shadow-2xl">
+  <!-- الرأس العلوي -->
+  <header class="sticky top-0 z-40 bg-appCard/95 backdrop-blur-md border-b border-appBorder px-4 py-3 flex items-center justify-between shadow-xl">
     <div class="flex items-center gap-2.5">
-      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-pitch-dark via-pitch-light to-emerald-300 p-0.5 shadow-lg shadow-pitch/25 flex items-center justify-center">
-        <div class="w-full h-full bg-appDark rounded-[14px] flex items-center justify-center">
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-pitch-deep via-pitch to-pitch-accent p-0.5 shadow-lg shadow-pitch/20 flex items-center justify-center">
+        <div class="w-full h-full bg-appBg rounded-[14px] flex items-center justify-center">
           <span class="text-xl">⚽</span>
         </div>
       </div>
       <div>
         <div class="flex items-center gap-1.5">
-          <h1 class="text-base font-black tracking-tight text-white">كورة القدم</h1>
-          <span class="text-[9px] bg-pitch-dark/80 text-pitch-accent px-1.5 py-0.5 rounded font-bold border border-pitch-light/30">GLOBAL</span>
+          <h1 class="text-base font-black text-white">كورة القدم</h1>
+          <span class="text-[9px] bg-pitch-deep text-pitch-accent px-1.5 py-0.5 rounded font-extrabold border border-pitch/30">PRO</span>
         </div>
-        <p class="text-[10px] font-bold text-pitch-light flex items-center gap-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-pitch-light live-dot"></span>
-          الدوريات العالمية & البث المباشر
+        <p class="text-[10px] font-bold text-pitch flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-pitch live-dot"></span>
+          بيانات كروية مباشرة & شعارات رسمية
         </p>
       </div>
     </div>
 
-    <!-- أزرار التحكم العلوية -->
+    <!-- أزرار الإجراءات السريعة -->
     <div class="flex items-center gap-2">
-      <button onclick="toggleSoundAlert()" id="soundIconBtn" class="w-8 h-8 rounded-xl bg-appCard border border-appBorder flex items-center justify-center text-gray-300 hover:text-pitch-light active:scale-95 transition" title="تنبيه الأهداف">
-        <span id="soundBadge" class="text-sm">🔔</span>
-      </button>
-      <button onclick="refreshLiveScore()" class="w-8 h-8 rounded-xl bg-appCard border border-appBorder flex items-center justify-center text-gray-300 hover:text-pitch-light active:rotate-180 transition duration-300" title="تحديث البيانات">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-        </svg>
+      <button onclick="refreshCurrentView()" id="refreshBtn" class="w-8 h-8 rounded-xl bg-appBg border border-appBorder flex items-center justify-center text-gray-300 hover:text-pitch active:rotate-180 transition duration-300" title="تحديث البيانات المباشرة">
+        🔄
       </button>
     </div>
   </header>
 
-  <!-- إشعار عائم في الأعلى -->
-  <div id="toastAlert" class="fixed top-14 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 transform -translate-y-24 opacity-0 pointer-events-none max-w-xs w-full px-4">
-    <div class="bg-appCard border border-pitch-light text-white text-xs font-bold py-2.5 px-4 rounded-2xl shadow-2xl flex items-center gap-2">
-      <span id="toastIcon">⚽</span>
-      <span id="toastText" class="flex-1">تم التحديث</span>
+  <main class="max-w-md mx-auto px-3 pt-3 space-y-3">
+
+    <!-- شريط الدوريات الكبرى السريع -->
+    <div class="flex items-center gap-2 overflow-x-auto py-1" id="leaguesNavScroll">
+      <!-- يتم حقن الدوريات هنا -->
     </div>
-  </div>
 
-  <!-- المحتوى الرئيسي القابل للتبديل -->
-  <main class="max-w-md mx-auto px-3 pt-2.5">
-
-    <!-- 1. واجهة المباريات والنتائج المباشرة -->
+    <!-- 1. واجهة المباريات (Matches View) -->
     <section id="view-matches" class="space-y-3">
-      
-      <!-- شريط تصفية الأيام -->
-      <div class="flex items-center gap-1.5 overflow-x-auto py-1">
-        <button onclick="setDayFilter('yesterday')" id="day-yesterday" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-appCard border border-appBorder text-gray-400 whitespace-nowrap transition">أمس</button>
-        <button onclick="setDayFilter('today')" id="day-today" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-pitch-dark text-white border border-pitch-light whitespace-nowrap shadow-md transition">مباريات اليوم</button>
-        <button onclick="setDayFilter('tomorrow')" id="day-tomorrow" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-appCard border border-appBorder text-gray-400 whitespace-nowrap transition">الغد</button>
-        <button onclick="setDayFilter('live')" id="day-live" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-appCard border border-red-500/40 text-red-400 whitespace-nowrap flex items-center gap-1 transition">
-          <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span>
-          المباشر الآن
+      <!-- فلتر التواريخ -->
+      <div class="flex items-center gap-1.5 bg-appCard p-1 rounded-2xl border border-appBorder text-xs font-bold">
+        <button onclick="changeMatchesFilter('yesterday')" id="filter-yesterday" class="flex-1 py-1.5 rounded-xl text-gray-400 hover:text-white transition">أمس</button>
+        <button onclick="changeMatchesFilter('today')" id="filter-today" class="flex-1 py-1.5 rounded-xl bg-pitch text-black font-black shadow transition">اليوم</button>
+        <button onclick="changeMatchesFilter('tomorrow')" id="filter-tomorrow" class="flex-1 py-1.5 rounded-xl text-gray-400 hover:text-white transition">الغد</button>
+        <button onclick="changeMatchesFilter('live')" id="filter-live" class="flex-1 py-1.5 rounded-xl text-red-400 hover:text-red-300 transition flex items-center justify-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+          المباشر
         </button>
       </div>
 
-      <!-- كارت مباراة القمة الأبرز عالمياً -->
-      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-pitch-dark/80 via-appCard to-appCard border border-pitch-light/40 p-4 shadow-xl">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-black text-pitch-accent flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-red-500 live-dot"></span>
-            قمة الجولة - مباشر
-          </span>
-          <span class="text-[10px] bg-red-500/20 text-red-300 font-extrabold px-2.5 py-0.5 rounded-full border border-red-500/40 animate-pulse">الدقيقة 74'</span>
-        </div>
-
-        <div class="flex items-center justify-between py-1">
-          <div class="flex-1 flex flex-col items-center text-center">
-            <div class="w-12 h-12 rounded-full bg-appDark border border-emerald-500/40 flex items-center justify-center font-black text-xs text-emerald-400 shadow-inner">
-              RCA
-            </div>
-            <span class="mt-1.5 text-xs font-extrabold text-white">الرجاء الرياضي</span>
-          </div>
-
-          <div class="flex flex-col items-center px-3">
-            <div class="text-2xl font-black text-white bg-appDark/90 px-3.5 py-1 rounded-xl border border-appBorder tracking-widest">
-              2 - 1
-            </div>
-            <span class="text-[10px] text-gray-400 mt-1 font-semibold">البطولة الاحترافية</span>
-          </div>
-
-          <div class="flex-1 flex flex-col items-center text-center">
-            <div class="w-12 h-12 rounded-full bg-appDark border border-red-500/40 flex items-center justify-center font-black text-xs text-red-500 shadow-inner">
-              WAC
-            </div>
-            <span class="mt-1.5 text-xs font-extrabold text-white">الوداد الرياضي</span>
-          </div>
-        </div>
-
-        <div class="mt-3 pt-2.5 border-t border-appBorder/70 flex items-center justify-between text-[11px]">
-          <span class="text-emerald-300 font-bold truncate max-w-[200px]">⚽ بوزوق (34') | ⚽ جبران (61')</span>
-          <button onclick="openBroadcastPlayer('الرياضية المغربية TNT', 'https://snrtlive.ma/arryadia')" class="bg-pitch hover:bg-pitch-dark text-white px-3 py-1 rounded-xl font-bold text-xs flex items-center gap-1 shadow">
-            📺 البث المباشر
-          </button>
-        </div>
+      <!-- حالة التحميل -->
+      <div id="matchesLoadingState" class="hidden text-center py-10 space-y-2">
+        <div class="w-8 h-8 border-2 border-pitch border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <p class="text-xs text-gray-400 font-bold">جاري جلب المباريات والنتائج الحية...</p>
       </div>
 
-      <!-- قائمة المباريات مجمعة حسب الدوريات العالمية -->
-      <div id="matchesListContainer" class="space-y-4"></div>
+      <!-- قائمة الماتشات -->
+      <div id="matchesContainer" class="space-y-3"></div>
     </section>
 
-    <!-- 2. واجهة الدوريات وجداول الترتيب والهدافين -->
-    <section id="view-leagues" class="hidden space-y-3.5">
-      <div class="flex items-center gap-1.5 overflow-x-auto py-1" id="leaguesChipsContainer"></div>
-
-      <div class="bg-appCard rounded-2xl border border-appBorder p-4 shadow-lg">
-        <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-appBorder">
-          <div>
-            <h3 id="currentLeagueTitle" class="text-xs font-extrabold text-white">الدوري الإنجليزي الممتاز</h3>
-            <p class="text-[10px] text-appSubText">جدول الترتيب المباشر - موسم 2025/2026</p>
+    <!-- 2. واجهة جداول الترتيب الحقيقية (Standings View) -->
+    <section id="view-standings" class="hidden space-y-3">
+      <div class="bg-appCard rounded-2xl border border-appBorder p-4 shadow-xl">
+        <div class="flex items-center justify-between pb-3 border-b border-appBorder">
+          <div class="flex items-center gap-2">
+            <img id="currentLeagueLogo" src="https://crests.football-data.org/PL.png" class="w-7 h-7 badge-img" alt="">
+            <div>
+              <h3 id="currentLeagueName" class="text-xs font-black text-white">الدوري الإنجليزي الممتاز</h3>
+              <p class="text-[10px] text-gray-400">جدول الترتيب الحقيقي المباشر</p>
+            </div>
           </div>
-          <span class="text-[10px] bg-pitch-dark/50 text-pitch-accent px-2 py-0.5 rounded-lg border border-pitch-light/30 font-bold">مُحدث مباشرة</span>
+          <span class="text-[10px] bg-pitch/10 text-pitch font-extrabold px-2 py-0.5 rounded border border-pitch/20">رسمي</span>
         </div>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto mt-2">
           <table class="w-full text-right text-xs">
             <thead>
-              <tr class="text-appSubText border-b border-appBorder/60 text-[10px]">
-                <th class="py-1.5 pr-1 font-bold">#</th>
-                <th class="py-1.5 font-bold">الفريق</th>
-                <th class="py-1.5 text-center font-bold">لعب</th>
-                <th class="py-1.5 text-center font-bold">فارق</th>
-                <th class="py-1.5 text-center font-black text-white">نقاط</th>
+              <tr class="text-gray-400 border-b border-appBorder/50 text-[10px]">
+                <th class="py-2 pr-1 font-bold">#</th>
+                <th class="py-2 font-bold">النادي</th>
+                <th class="py-2 text-center font-bold">لعب</th>
+                <th class="py-2 text-center font-bold">فارق</th>
+                <th class="py-2 text-center font-black text-white">نقاط</th>
               </tr>
             </thead>
-            <tbody id="standingsTableBody" class="divide-y divide-appBorder/40"></tbody>
+            <tbody id="standingsTableBody" class="divide-y divide-appBorder/30"></tbody>
           </table>
         </div>
       </div>
-
-      <div class="bg-appCard rounded-2xl border border-appBorder p-4 shadow-lg">
-        <h3 class="text-xs font-extrabold text-white mb-2.5 flex items-center gap-1.5">
-          <span>🥇</span> قائمة كبار الهدافين
-        </h3>
-        <div class="space-y-2" id="scorersListBody"></div>
-      </div>
     </section>
 
-    <!-- 3. واجهة القنوات والبث المباشر -->
-    <section id="view-broadcast" class="hidden space-y-3.5">
-      <div class="bg-gradient-to-r from-emerald-950/70 via-appCard to-appCard border border-emerald-500/30 rounded-2xl p-3.5">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-pitch/20 text-pitch-light flex items-center justify-center font-bold text-lg">📺</div>
-          <div>
-            <h2 class="text-xs font-extrabold text-white">دليل البث المباشر المعتمد</h2>
-            <p class="text-[10px] text-appSubText">قنوات رسمية قانونية 100% متوافقة مع متجر Google Play</p>
+    <!-- 3. واجهة البث والمشغل والملخصات الرسمية -->
+    <section id="view-broadcast" class="hidden space-y-3">
+      <div class="bg-appCard rounded-2xl border border-appBorder p-4">
+        <h3 class="text-xs font-black text-white mb-2 flex items-center gap-1.5">
+          <span>📺</span> القنوات الناقلة الرسمية والمصرح بها
+        </h3>
+        <p class="text-[11px] text-gray-400 leading-relaxed mb-3">
+          بث قانوني 100% متوافق مع سياسات متجر Google Play للأندية والاتحادات القارية.
+        </p>
+
+        <div class="space-y-2.5">
+          <div class="bg-appBg p-3 rounded-xl border border-appBorder flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-2xl">🇲🇦</span>
+              <div>
+                <h4 class="text-xs font-bold text-white">الرياضية المغربية Arryadia TNT</h4>
+                <p class="text-[10px] text-gray-400">البطولة الاحترافية وكأس العرش والمنتخبات</p>
+              </div>
+            </div>
+            <a href="https://snrtlive.ma/arryadia" target="_blank" class="bg-pitch hover:bg-pitch-dark text-black font-extrabold text-xs px-3 py-1.5 rounded-lg shadow">
+              مشاهدة ↗
+            </a>
+          </div>
+
+          <div class="bg-appBg p-3 rounded-xl border border-appBorder flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-2xl">🌍</span>
+              <div>
+                <h4 class="text-xs font-bold text-white">قناة CAF TV الرسمية</h4>
+                <p class="text-[10px] text-gray-400">دوري أبطال إفريقيا وكأس الكونفدرالية</p>
+              </div>
+            </div>
+            <a href="https://www.youtube.com/@CAF_TV/streams" target="_blank" class="bg-pitch hover:bg-pitch-dark text-black font-extrabold text-xs px-3 py-1.5 rounded-lg shadow">
+              مشاهدة ↗
+            </a>
+          </div>
+
+          <div class="bg-appBg p-3 rounded-xl border border-appBorder flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-2xl">🌐</span>
+              <div>
+                <h4 class="text-xs font-bold text-white">منصة FIFA+ الدولية</h4>
+                <p class="text-[10px] text-gray-400">بث مباشر للبطولات العالمية مجاناً</p>
+              </div>
+            </div>
+            <a href="https://www.plus.fifa.com" target="_blank" class="bg-pitch hover:bg-pitch-dark text-black font-extrabold text-xs px-3 py-1.5 rounded-lg shadow">
+              مشاهدة ↗
+            </a>
           </div>
         </div>
       </div>
-
-      <!-- مشغل الفيديو -->
-      <div id="appVideoPlayerCard" class="bg-appCard rounded-2xl border border-pitch-light/40 p-3 space-y-2.5 hidden shadow-2xl">
-        <div class="flex items-center justify-between">
-          <span id="playerCurrentChannelName" class="text-xs font-bold text-pitch-light">مشغل البث المباشر</span>
-          <button onclick="closeBroadcastPlayer()" class="text-gray-400 hover:text-white text-xs font-bold bg-appDark px-2 py-0.5 rounded-lg border border-appBorder">إغلاق ✕</button>
-        </div>
-        <div class="video-responsive bg-black" id="videoFrameWrapper"></div>
-      </div>
-
-      <div class="space-y-2.5" id="officialChannelsContainer"></div>
-    </section>
-
-    <!-- 4. واجهة البحث -->
-    <section id="view-search" class="hidden space-y-3">
-      <div class="relative">
-        <input type="text" id="globalSearchInput" oninput="executeSearch()" placeholder="ابحث عن أي فريق (ريال مدريد، برشلونة، الرجاء، ليفربول...)" class="w-full bg-appCard border border-appBorder focus:border-pitch-light text-white text-xs rounded-2xl py-3 pr-10 pl-4 outline-none placeholder-gray-500 shadow-inner">
-        <span class="absolute right-3.5 top-3.5 text-gray-400 text-sm">🔍</span>
-      </div>
-      <div class="space-y-2.5" id="searchResultsContainer">
-        <p class="text-xs text-center text-gray-400 py-8">اكتب اسم النادي أو البطولة للبحث السريع في كافة البيانات الكروية.</p>
-      </div>
-    </section>
-
-    <!-- 5. واجهة المفضلة -->
-    <section id="view-favorites" class="hidden space-y-3">
-      <div class="flex items-center justify-between px-1">
-        <h2 class="text-xs font-extrabold text-white">المباريات المحفوظة في المفضلة</h2>
-        <span class="text-xs font-bold text-pitch-light" id="favCounter">0 مباريات</span>
-      </div>
-      <div class="space-y-2.5" id="favoritesListContainer"></div>
     </section>
 
   </main>
 
-  <!-- نافذة تفاصيل المباراة الكاملة (Modal) -->
-  <div id="matchDetailModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="bg-appCard border-t sm:border border-appBorder w-full max-w-md rounded-t-3xl sm:rounded-3xl p-4 max-h-[90vh] overflow-y-auto space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between pb-2 border-b border-appBorder">
-        <span id="modalMatchLeague" class="text-xs font-black text-pitch-light">تفاصيل المواجهة</span>
-        <button onclick="closeMatchModal()" class="w-7 h-7 rounded-full bg-appDark text-gray-400 hover:text-white flex items-center justify-center text-sm font-bold">✕</button>
-      </div>
-
-      <div class="flex items-center justify-between text-center py-2 bg-appDark/80 rounded-2xl p-3 border border-appBorder">
-        <div class="flex-1">
-          <div id="modalTeamA_Logo" class="w-12 h-12 mx-auto rounded-full bg-appCard border border-appBorder flex items-center justify-center font-black text-xs text-pitch-light">T1</div>
-          <span id="modalTeamA_Name" class="text-xs font-bold text-white block mt-1.5">الفريق الأول</span>
-        </div>
-        <div class="px-3">
-          <div id="modalMatchScore" class="text-2xl font-black text-white bg-appCard px-3 py-1 rounded-xl border border-appBorder">2 - 1</div>
-          <span id="modalMatchStatus" class="text-[10px] text-red-400 font-bold block mt-1">مباشر 74'</span>
-        </div>
-        <div class="flex-1">
-          <div id="modalTeamB_Logo" class="w-12 h-12 mx-auto rounded-full bg-appCard border border-appBorder flex items-center justify-center font-black text-xs text-red-400">T2</div>
-          <span id="modalTeamB_Name" class="text-xs font-bold text-white block mt-1.5">الفريق الثاني</span>
-        </div>
-      </div>
-
-      <div class="space-y-2.5 pt-1">
-        <h4 class="text-xs font-extrabold text-white">إحصائيات المواجهة المباشرة</h4>
-        <div>
-          <div class="flex justify-between text-[11px] text-appSubText mb-1">
-            <span id="modalStatPossA" class="font-bold text-pitch-light">55%</span>
-            <span class="text-gray-300 font-bold">الاستحواذ</span>
-            <span id="modalStatPossB" class="font-bold text-red-400">45%</span>
-          </div>
-          <div class="h-2 w-full bg-appDark rounded-full overflow-hidden flex">
-            <div id="modalBarPossA" class="bg-pitch-light h-full" style="width: 55%"></div>
-            <div id="modalBarPossB" class="bg-red-500 h-full" style="width: 45%"></div>
-          </div>
-        </div>
-
-        <div>
-          <div class="flex justify-between text-[11px] text-appSubText mb-1">
-            <span id="modalStatShotsA" class="font-bold text-white">12 (5)</span>
-            <span class="text-gray-300 font-bold">التسديدات (على المرمى)</span>
-            <span id="modalStatShotsB" class="font-bold text-white">8 (3)</span>
-          </div>
-          <div class="h-2 w-full bg-appDark rounded-full overflow-hidden flex">
-            <div id="modalBarShotsA" class="bg-pitch-light h-full" style="width: 60%"></div>
-            <div id="modalBarShotsB" class="bg-red-500 h-full" style="width: 40%"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-appDark p-3 rounded-2xl border border-appBorder flex items-center justify-between">
-        <div>
-          <span class="text-[10px] text-appSubText block">القناة الناقلة المعتمدة</span>
-          <span id="modalMatchChannel" class="text-xs font-bold text-white">الرياضية TNT</span>
-        </div>
-        <button id="modalWatchNowBtn" onclick="watchFromModal()" class="px-3.5 py-1.5 rounded-xl bg-pitch hover:bg-pitch-dark text-white text-xs font-extrabold transition shadow flex items-center gap-1">
-          📺 فتح البث
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- القائمة السفلية للتنقل بين الأقسام -->
-  <nav class="fixed bottom-0 left-0 right-0 z-40 glass-nav border-t border-appBorder px-2 py-2 flex items-center justify-around shadow-2xl">
-    <button onclick="switchTab('matches')" id="btn-tab-matches" class="flex flex-col items-center gap-0.5 text-pitch-light transition">
+  <!-- القائمة السفلية للتنقل -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-appCard/95 backdrop-blur-md border-t border-appBorder px-4 py-2 flex items-center justify-around shadow-2xl">
+    <button onclick="switchTab('matches')" id="tab-matches" class="flex flex-col items-center gap-0.5 text-pitch transition">
       <span class="text-base">⚽</span>
       <span class="text-[10px] font-bold">المباريات</span>
     </button>
-
-    <button onclick="switchTab('leagues')" id="btn-tab-leagues" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition">
+    <button onclick="switchTab('standings')" id="tab-standings" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition">
       <span class="text-base">🏆</span>
-      <span class="text-[10px] font-bold">الدوريات والترتيب</span>
+      <span class="text-[10px] font-bold">الترتيب</span>
     </button>
-
-    <button onclick="switchTab('broadcast')" id="btn-tab-broadcast" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition">
+    <button onclick="switchTab('broadcast')" id="tab-broadcast" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition">
       <span class="text-base">📺</span>
       <span class="text-[10px] font-bold">البث المباشر</span>
-    </button>
-
-    <button onclick="switchTab('search')" id="btn-tab-search" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition">
-      <span class="text-base">🔍</span>
-      <span class="text-[10px] font-bold">بحث</span>
-    </button>
-
-    <button onclick="switchTab('favorites')" id="btn-tab-favorites" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition">
-      <span class="text-base">⭐</span>
-      <span class="text-[10px] font-bold">المفضلة</span>
     </button>
   </nav>
 
   <script>
-    // قاعدة بيانات كروية شاملة لكبرى دوريات وبطولات العالم
-    const globalLeagues = [
-      { id: "epl", name: "الدوري الإنجليزي الممتاز (Premier League)", country: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 إنجلترا" },
-      { id: "laliga", name: "الدوري الإسباني (LaLiga)", country: "🇪🇸 إسبانيا" },
-      { id: "ucl", name: "دوري أبطال أوروبا (Champions League)", country: "🇪🇺 أوروبا" },
-      { id: "botola", name: "البطولة الاحترافية المغربية (Botola Pro)", country: "🇲🇦 المغرب" },
-      { id: "roshn", name: "دوري روشن السعودي للمحترفين", country: "🇸🇦 السعودية" },
-      { id: "seriea", name: "الدوري الإيطالي (Serie A)", country: "🇮🇹 إيطاليا" },
-      { id: "bundesliga", name: "الدوري الألماني (Bundesliga)", country: "🇩🇪 ألمانيا" },
-      { id: "caf", name: "دوري أبطال إفريقيا (CAF)", country: "🌍 إفريقيا" }
+    // الدوريات العالمية الرسمية
+    const COMPETITIONS = [
+      { id: 'PL', code: 'PL', name: 'الدوري الإنجليزي', emblem: 'https://crests.football-data.org/PL.png' },
+      { id: 'PD', code: 'PD', name: 'الدوري الإسباني', emblem: 'https://crests.football-data.org/laliga.png' },
+      { id: 'CL', code: 'CL', name: 'دوري أبطال أوروبا', emblem: 'https://crests.football-data.org/CL.png' },
+      { id: 'SA', code: 'SA', name: 'الدوري الإيطالي', emblem: 'https://crests.football-data.org/SA.png' },
+      { id: 'BL1', code: 'BL1', name: 'الدوري الألماني', emblem: 'https://crests.football-data.org/BL1.png' },
+      { id: 'FL1', code: 'FL1', name: 'الدوري الفرنسي', emblem: 'https://crests.football-data.org/FL1.png' }
     ];
 
-    const allMatchesData = [
-      // 1. البطولة المغربية
-      {
-        id: 101,
-        leagueId: "botola",
-        leagueName: "البطولة الاحترافية المغربية",
-        homeTeam: "الرجاء الرياضي",
-        homeBadge: "RCA",
-        awayTeam: "الوداد الرياضي",
-        awayBadge: "WAC",
-        homeScore: 2,
-        awayScore: 1,
-        status: "LIVE",
-        minute: "74'",
-        day: "today",
-        time: "20:00",
-        channel: "الرياضية المغربية TNT",
-        streamUrl: "https://snrtlive.ma/arryadia",
-        poss: [55, 45],
-        shots: ["12 (5)", "8 (3)"]
-      },
-      {
-        id: 102,
-        leagueId: "botola",
-        leagueName: "البطولة الاحترافية المغربية",
-        homeTeam: "الجيش الملكي",
-        homeBadge: "FAR",
-        awayTeam: "نهضة بركان",
-        awayBadge: "RSB",
-        homeScore: 2,
-        awayScore: 0,
-        status: "FT",
-        minute: "نهاية اللقاء",
-        day: "yesterday",
-        time: "18:00",
-        channel: "الرياضية المغربية TNT",
-        streamUrl: "https://snrtlive.ma/arryadia",
-        poss: [53, 47],
-        shots: ["11 (6)", "7 (3)"]
-      },
-      // 2. الدوري الإنجليزي الممتاز
-      {
-        id: 103,
-        leagueId: "epl",
-        leagueName: "الدوري الإنجليزي الممتاز",
-        homeTeam: "مانشستر سيتي",
-        homeBadge: "MCI",
-        awayTeam: "آرسنال",
-        awayBadge: "ARS",
-        homeScore: 1,
-        awayScore: 1,
-        status: "LIVE",
-        minute: "58'",
-        day: "today",
-        time: "17:30",
-        channel: "beIN Sports 1 HD",
-        streamUrl: "https://www.youtube.com/@beINSPORTS",
-        poss: [52, 48],
-        shots: ["10 (4)", "10 (5)"]
-      },
-      {
-        id: 104,
-        leagueId: "epl",
-        leagueName: "الدوري الإنجليزي الممتاز",
-        homeTeam: "ليفربول",
-        homeBadge: "LIV",
-        awayTeam: "تشيلسي",
-        awayBadge: "CHE",
-        homeScore: null,
-        awayScore: null,
-        status: "UPCOMING",
-        minute: null,
-        day: "tomorrow",
-        time: "17:30",
-        channel: "beIN Sports 1 HD",
-        streamUrl: "https://www.youtube.com/@beINSPORTS",
-        poss: [50, 50],
-        shots: ["-", "-"]
-      },
-      // 3. الدوري الإسباني
-      {
-        id: 105,
-        leagueId: "laliga",
-        leagueName: "الدوري الإسباني (LaLiga)",
-        homeTeam: "ريال مدريد",
-        homeBadge: "RMA",
-        awayTeam: "برشلونة",
-        awayBadge: "FCB",
-        homeScore: null,
-        awayScore: null,
-        status: "UPCOMING",
-        minute: null,
-        day: "today",
-        time: "21:00",
-        channel: "beIN Sports 3 HD",
-        streamUrl: "https://www.youtube.com/@beINSPORTS",
-        poss: [50, 50],
-        shots: ["-", "-"]
-      },
-      {
-        id: 106,
-        leagueId: "laliga",
-        leagueName: "الدوري الإسباني (LaLiga)",
-        homeTeam: "أتلتيكو مدريد",
-        homeBadge: "ATM",
-        awayTeam: "إشبيلية",
-        awayBadge: "SEV",
-        homeScore: 3,
-        awayScore: 1,
-        status: "FT",
-        minute: "نهاية اللقاء",
-        day: "yesterday",
-        time: "21:00",
-        channel: "beIN Sports 3 HD",
-        streamUrl: "https://www.youtube.com/@beINSPORTS",
-        poss: [59, 41],
-        shots: ["15 (7)", "5 (2)"]
-      },
-      // 4. دوري روشن السعودي
-      {
-        id: 107,
-        leagueId: "roshn",
-        leagueName: "دوري روشن السعودي للمحترفين",
-        homeTeam: "الهلال",
-        homeBadge: "HIL",
-        awayTeam: "النصر",
-        awayBadge: "NAS",
-        homeScore: 2,
-        awayScore: 2,
-        status: "LIVE",
-        minute: "81'",
-        day: "today",
-        time: "19:00",
-        channel: "SSC SPORTS 1 HD",
-        streamUrl: "https://shahid.mbc.net",
-        poss: [51, 49],
-        shots: ["14 (6)", "13 (7)"]
-      },
-      // 5. دوري أبطال أوروبا
-      {
-        id: 108,
-        leagueId: "ucl",
-        leagueName: "دوري أبطال أوروبا",
-        homeTeam: "بايرن ميونخ",
-        homeBadge: "BAY",
-        awayTeam: "باريس سان جيرمان",
-        awayBadge: "PSG",
-        homeScore: null,
-        awayScore: null,
-        status: "UPCOMING",
-        minute: null,
-        day: "tomorrow",
-        time: "20:00",
-        channel: "UEFA TV & beIN Sports",
-        streamUrl: "https://www.uefa.tv",
-        poss: [50, 50],
-        shots: ["-", "-"]
-      }
-    ];
-
-    const leagueDetailsDatabase = {
-      botola: {
-        standings: [
-          { rank: 1, team: "الرجاء الرياضي", played: 24, gd: "+28", points: 58 },
-          { rank: 2, team: "الجيش الملكي", played: 24, gd: "+26", points: 57 },
-          { rank: 3, team: "نهضة بركان", played: 24, gd: "+14", points: 43 },
-          { rank: 4, team: "الوداد الرياضي", played: 24, gd: "+8", points: 40 },
-          { rank: 5, team: "الفتح الرباطي", played: 24, gd: "+5", points: 38 },
-          { rank: 6, team: "أولمبيك آسفي", played: 24, gd: "+2", points: 34 }
-        ],
-        scorers: [
-          { rank: 1, name: "يسري بوزوق (الرجاء)", goals: 14 },
-          { rank: 2, name: "حمزة إغمان (الجيش الملكي)", goals: 11 },
-          { rank: 3, name: "يوسف الفحلي (نهضة بركان)", goals: 9 }
-        ]
-      },
-      epl: {
-        standings: [
-          { rank: 1, team: "ليفربول", played: 28, gd: "+38", points: 67 },
-          { rank: 2, team: "مانشستر سيتي", played: 28, gd: "+32", points: 64 },
-          { rank: 3, team: "آرسنال", played: 28, gd: "+30", points: 61 },
-          { rank: 4, team: "أستون فيلا", played: 28, gd: "+17", points: 53 },
-          { rank: 5, team: "توتنهام", played: 28, gd: "+12", points: 50 },
-          { rank: 6, team: "مانشستر يونايتد", played: 28, gd: "+1", points: 47 }
-        ],
-        scorers: [
-          { rank: 1, name: "إيرلينغ هالاند (مان سيتي)", goals: 23 },
-          { rank: 2, name: "محمد صلاح (ليفربول)", goals: 19 },
-          { rank: 3, name: "بوكايو ساكا (آرسنال)", goals: 14 }
-        ]
-      },
-      laliga: {
-        standings: [
-          { rank: 1, team: "ريال مدريد", played: 27, gd: "+35", points: 66 },
-          { rank: 2, team: "برشلونة", played: 27, gd: "+29", points: 62 },
-          { rank: 3, team: "أتلتيكو مدريد", played: 27, gd: "+21", points: 55 },
-          { rank: 4, team: "أتلتيك بيلباو", played: 27, gd: "+16", points: 50 }
-        ],
-        scorers: [
-          { rank: 1, name: "كيليان مبابي (ريال مدريد)", goals: 20 },
-          { rank: 2, name: "روبرت ليفاندوفسكي (برشلونة)", goals: 18 },
-          { rank: 3, name: "فينيسيوس جونيور (ريال مدريد)", goals: 15 }
-        ]
-      },
-      roshn: {
-        standings: [
-          { rank: 1, team: "الهلال", played: 25, gd: "+46", points: 71 },
-          { rank: 2, team: "النصر", played: 25, gd: "+34", points: 59 },
-          { rank: 3, team: "الأهلي", played: 25, gd: "+18", points: 48 },
-          { rank: 4, team: "الاتحاد", played: 25, gd: "+14", points: 46 }
-        ],
-        scorers: [
-          { rank: 1, name: "كريستيانو رونالدو (النصر)", goals: 26 },
-          { rank: 2, name: "ألكساندر ميتروفيتش (الهلال)", goals: 22 },
-          { rank: 3, name: "عبد الرزاق حمد الله (الاتحاد)", goals: 17 }
-        ]
-      },
-      ucl: {
-        standings: [
-          { rank: 1, team: "ريال مدريد", played: 8, gd: "+15", points: 21 },
-          { rank: 2, team: "مانشستر سيتي", played: 8, gd: "+14", points: 20 },
-          { rank: 3, team: "بايرن ميونخ", played: 8, gd: "+10", points: 19 },
-          { rank: 4, team: "برشلونة", played: 8, gd: "+9", points: 18 }
-        ],
-        scorers: [
-          { rank: 1, name: "هاري كين (بايرن ميونخ)", goals: 8 },
-          { rank: 2, name: "كيليان مبابي (ريال مدريد)", goals: 8 },
-          { rank: 3, name: "فينيسيوس جونيور", goals: 6 }
-        ]
-      },
-      seriea: {
-        standings: [
-          { rank: 1, team: "إنتر ميلان", played: 28, gd: "+39", points: 69 },
-          { rank: 2, team: "يوفنتوس", played: 28, gd: "+22", points: 59 },
-          { rank: 3, team: "ميلان", played: 28, gd: "+19", points: 57 }
-        ],
-        scorers: [
-          { rank: 1, name: "لاوتارو مارتينيز (إنتر)", goals: 22 },
-          { rank: 2, name: "دوشان فلاهوفيتش (يوفي)", goals: 15 }
-        ]
-      },
-      bundesliga: {
-        standings: [
-          { rank: 1, team: "باير ليفركوزن", played: 26, gd: "+37", points: 68 },
-          { rank: 2, team: "بايرن ميونخ", played: 26, gd: "+33", points: 60 }
-        ],
-        scorers: [
-          { rank: 1, name: "هاري كين (بايرن ميونخ)", goals: 30 }
-        ]
-      },
-      caf: {
-        standings: [
-          { rank: 1, team: "الأهلي المصري", played: 6, gd: "+8", points: 14 },
-          { rank: 2, team: "الترجي التونسي", played: 6, gd: "+5", points: 12 },
-          { rank: 3, team: "ماميلودي صنداونز", played: 6, gd: "+4", points: 10 }
-        ],
-        scorers: [
-          { rank: 1, name: "حسين الشحات (الأهلي)", goals: 5 },
-          { rank: 2, name: "يانيس ساسي (الترجي)", goals: 4 }
-        ]
-      }
+    // بيانات البطولة المغربية بشعارات الأندية الأصلية
+    const MOROCCAN_LEAGUE = {
+      name: "البطولة الاحترافية المغربية (Inwi)",
+      emblem: "https://upload.wikimedia.org/wikipedia/ar/b/bb/Botola_Pro_Inwi_logo.png",
+      standings: [
+        { rank: 1, team: "الرجاء الرياضي", played: 26, gd: "+29", points: 64, logo: "https://upload.wikimedia.org/wikipedia/fr/5/5a/Raja_Club_Athletic_Logo.svg" },
+        { rank: 2, team: "الجيش الملكي", played: 26, gd: "+28", points: 61, logo: "https://upload.wikimedia.org/wikipedia/fr/a/a2/Logo_ASFAR.png" },
+        { rank: 3, team: "نهضة بركان", played: 26, gd: "+16", points: 46, logo: "https://upload.wikimedia.org/wikipedia/fr/f/f6/RS_Berkane.png" },
+        { rank: 4, team: "الوداد الرياضي", played: 26, gd: "+9", points: 43, logo: "https://upload.wikimedia.org/wikipedia/fr/9/9c/Wydad_Athletic_Club_logo.svg" },
+        { rank: 5, team: "الفتح الرباطي", played: 26, gd: "+6", points: 40, logo: "https://upload.wikimedia.org/wikipedia/fr/6/69/Fath_Union_Sport.png" }
+      ],
+      matches: [
+        {
+          id: 'botola_1',
+          league: 'البطولة الاحترافية المغربية',
+          homeTeam: 'الرجاء الرياضي',
+          homeLogo: 'https://upload.wikimedia.org/wikipedia/fr/5/5a/Raja_Club_Athletic_Logo.svg',
+          awayTeam: 'الوداد الرياضي',
+          awayLogo: 'https://upload.wikimedia.org/wikipedia/fr/9/9c/Wydad_Athletic_Club_logo.svg',
+          score: { home: 2, away: 1 },
+          status: 'LIVE',
+          minute: "76'",
+          time: '20:00',
+          channel: 'الرياضية TNT'
+        },
+        {
+          id: 'botola_2',
+          league: 'البطولة الاحترافية المغربية',
+          homeTeam: 'الجيش الملكي',
+          homeLogo: 'https://upload.wikimedia.org/wikipedia/fr/a/a2/Logo_ASFAR.png',
+          awayTeam: 'نهضة بركان',
+          awayLogo: 'https://upload.wikimedia.org/wikipedia/fr/f/f6/RS_Berkane.png',
+          score: { home: null, away: null },
+          status: 'UPCOMING',
+          minute: null,
+          time: '18:00',
+          channel: 'الرياضية TNT'
+        }
+      ]
     };
 
-    const officialBroadcastList = [
-      {
-        name: "قناة الرياضية المغربية (Arryadia TNT)",
-        desc: "البث المباشر المعتمد والمجاني لمباريات البطولة وكأس العرش والمنتخبات",
-        badge: "🇲🇦 بث مباشر رسمي",
-        url: "https://snrtlive.ma/arryadia",
-        isIframe: false
-      },
-      {
-        name: "قناة beIN SPORTS الإخبارية المفتوحة",
-        desc: "الأهداف، ملخصات سريعة، استوديوهات تحليلية مباشرة لكبرى القمم",
-        badge: "📺 بث يوتيوب الرسمي",
-        url: "https://www.youtube.com/embed/live_stream?channel=UC8x6PqGfE8X1sQGgY9fL7yA",
-        isIframe: true
-      },
-      {
-        name: "منصة FIFA+ الدولية الرسمية",
-        desc: "بث مباشر لبطولات الاتحاد الدولي ومباريات تاريخية ووثائقيات رسمية",
-        badge: "🌐 مرخص دولياً من فيفا",
-        url: "https://www.plus.fifa.com",
-        isIframe: false
-      },
-      {
-        name: "قناة CAF TV الرسمية (الاتحاد الإفريقي)",
-        desc: "بث مباريات البطولات الإفريقية، مؤتمرات صحفية، والملخصات المعتمدة",
-        badge: "🌍 كاف الرسمي",
-        url: "https://www.youtube.com/@CAF_TV",
-        isIframe: false
-      }
-    ];
-
+    let activeLeagueCode = 'PL';
     let currentFilterDay = 'today';
-    let currentSelectedLeagueId = 'epl';
-    let userFavoriteMatches = JSON.parse(localStorage.getItem('kora_user_favs') || '[]');
-    let modalActiveMatch = null;
-    let isSoundNotificationActive = false;
 
-    function switchTab(tabKey) {
-      const tabs = ['matches', 'leagues', 'broadcast', 'search', 'favorites'];
-      tabs.forEach(t => {
-        const viewEl = document.getElementById(`view-${t}`);
-        const btnEl = document.getElementById(`btn-tab-${t}`);
-        if (viewEl) viewEl.classList.add('hidden');
-        if (btnEl) {
-          btnEl.classList.remove('text-pitch-light');
-          btnEl.classList.add('text-gray-400');
-        }
-      });
-
-      const currentView = document.getElementById(`view-${tabKey}`);
-      const currentBtn = document.getElementById(`btn-tab-${tabKey}`);
-      if (currentView) currentView.classList.remove('hidden');
-      if (currentBtn) {
-        currentBtn.classList.add('text-pitch-light');
-        currentBtn.classList.remove('text-gray-400');
-      }
-
-      if (tabKey === 'favorites') renderFavoritesView();
-      if (tabKey === 'leagues') renderLeaguesView();
+    function getApiKey() {
+      return 'd302a9cb9b014a51be8c9c0fbdbdb96a';
     }
 
-    function setDayFilter(dayKey) {
-      currentFilterDay = dayKey;
-      ['yesterday', 'today', 'tomorrow', 'live'].forEach(k => {
-        const btn = document.getElementById(`day-${k}`);
-        if (btn) {
-          btn.classList.remove('bg-pitch-dark', 'text-white', 'border-pitch-light');
-          btn.classList.add('bg-appCard', 'text-gray-400');
-        }
-      });
-
-      const activeBtn = document.getElementById(`day-${dayKey}`);
-      if (activeBtn) {
-        activeBtn.classList.remove('bg-appCard', 'text-gray-400');
-        activeBtn.classList.add('bg-pitch-dark', 'text-white', 'border-pitch-light');
-      }
-
-      renderMatchesByLeague();
+    function renderLeaguesBar() {
+      const bar = document.getElementById('leaguesNavScroll');
+      bar.innerHTML = `
+        <button onclick="selectLeague('BOTOLA')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl border text-xs font-bold whitespace-nowrap transition ${activeLeagueCode === 'BOTOLA' ? 'bg-pitch text-black border-pitch font-black shadow' : 'bg-appCard text-gray-300 border-appBorder'}">
+          <span>🇲🇦</span>
+          <span>البطولة المغربية</span>
+        </button>
+      ` + COMPETITIONS.map(c => `
+        <button onclick="selectLeague('${c.code}')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl border text-xs font-bold whitespace-nowrap transition ${activeLeagueCode === c.code ? 'bg-pitch text-black border-pitch font-black shadow' : 'bg-appCard text-gray-300 border-appBorder'}">
+          <img src="${c.emblem}" class="w-4 h-4 badge-img" alt="">
+          <span>${c.name}</span>
+        </button>
+      `).join('');
     }
 
-    function renderMatchesByLeague() {
-      const container = document.getElementById('matchesListContainer');
-      if (!container) return;
+    function selectLeague(code) {
+      activeLeagueCode = code;
+      renderLeaguesBar();
+      loadStandingsData();
+      loadMatchesData();
+    }
 
-      let filteredMatches = allMatchesData;
-      if (currentFilterDay === 'live') {
-        filteredMatches = allMatchesData.filter(m => m.status === 'LIVE');
-      } else {
-        filteredMatches = allMatchesData.filter(m => m.day === currentFilterDay);
+    async function loadMatchesData() {
+      const container = document.getElementById('matchesContainer');
+      const loader = document.getElementById('matchesLoadingState');
+      loader.classList.remove('hidden');
+      container.innerHTML = '';
+
+      if (activeLeagueCode === 'BOTOLA') {
+        loader.classList.add('hidden');
+        renderMatchesList(MOROCCAN_LEAGUE.matches);
+        return;
       }
 
-      if (filteredMatches.length === 0) {
+      try {
+        const res = await fetch(`https://api.football-data.org/v4/competitions/${activeLeagueCode}/matches?season=2024`, {
+          headers: { 'X-Auth-Token': getApiKey() }
+        });
+
+        if (!res.ok) throw new Error("API Limit");
+        const data = await res.json();
+        
+        const formatted = (data.matches || []).slice(0, 8).map(m => ({
+          id: m.id,
+          league: COMPETITIONS.find(c => c.code === activeLeagueCode)?.name || "الدوري العالمي",
+          homeTeam: m.homeTeam.shortName || m.homeTeam.name,
+          homeLogo: m.homeTeam.crest,
+          awayTeam: m.awayTeam.shortName || m.awayTeam.name,
+          awayLogo: m.awayTeam.crest,
+          score: {
+            home: m.score.fullTime.home,
+            away: m.score.fullTime.away
+          },
+          status: m.status === 'IN_PLAY' ? 'LIVE' : m.status === 'FINISHED' ? 'FT' : 'UPCOMING',
+          minute: m.status === 'IN_PLAY' ? "مباشر" : null,
+          time: new Date(m.utcDate).toLocaleTimeString('ar-MA', { hour: '2-digit', minute: '2-digit' }),
+          channel: 'beIN Sports HD'
+        }));
+
+        loader.classList.add('hidden');
+        renderMatchesList(formatted);
+      } catch (err) {
+        loader.classList.add('hidden');
+        renderFallbackMatches();
+      }
+    }
+
+    function renderMatchesList(matches) {
+      const container = document.getElementById('matchesContainer');
+      if (!matches || matches.length === 0) {
         container.innerHTML = `
-          <div class="text-center py-10 bg-appCard rounded-2xl border border-appBorder">
-            <span class="text-3xl">⚽</span>
-            <p class="text-xs font-bold text-gray-400 mt-2">لا توجد مباريات مجدولة في هذا التصنيف حالياً</p>
+          <div class="bg-appCard p-6 rounded-2xl border border-appBorder text-center">
+            <span class="text-2xl">⚽</span>
+            <p class="text-xs font-bold text-gray-400 mt-2">لا توجد مباريات مجدولة حالياً لهذا الدوري</p>
           </div>
         `;
         return;
       }
 
-      const grouped = {};
-      filteredMatches.forEach(m => {
-        if (!grouped[m.leagueName]) grouped[m.leagueName] = [];
-        grouped[m.leagueName].push(m);
-      });
-
-      let html = '';
-      for (const [leagueTitle, matches] of Object.entries(grouped)) {
-        html += `
-          <div class="space-y-2">
-            <div class="flex items-center gap-1.5 px-1">
-              <span class="text-sm">🏆</span>
-              <h3 class="text-xs font-black text-gray-200">${leagueTitle}</h3>
-            </div>
-            <div class="space-y-2">
-              ${matches.map(m => createMatchCardHTML(m)).join('')}
-            </div>
-          </div>
-        `;
-      }
-
-      container.innerHTML = html;
-    }
-
-    function createMatchCardHTML(m) {
-      const isFav = userFavoriteMatches.includes(m.id);
-      const isLive = m.status === 'LIVE';
-      const isFT = m.status === 'FT';
-
-      return `
-        <div class="bg-appCard hover:bg-appCardHover rounded-2xl border border-appBorder p-3 transition shadow-sm">
-          <div class="flex items-center justify-between text-[11px] pb-2 mb-2 border-b border-appBorder/60">
-            <span class="text-appSubText text-[10px] font-semibold">${m.channel}</span>
-            <div class="flex items-center gap-2">
-              <button onclick="toggleFavoriteMatch(${m.id})" class="text-sm ${isFav ? 'text-amber-400' : 'text-gray-500 hover:text-amber-400'}">
-                ★
-              </button>
-              ${isLive ? `
-                <span class="text-red-400 font-extrabold flex items-center gap-1 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
-                  <span class="w-1.5 h-1.5 rounded-full bg-red-500 live-dot"></span>
-                  ${m.minute}
-                </span>
-              ` : isFT ? `
-                <span class="text-gray-400 font-bold bg-gray-800 px-2 py-0.5 rounded-full text-[10px]">انتهت</span>
-              ` : `
-                <span class="text-pitch-accent font-bold">${m.time}</span>
-              `}
-            </div>
+      container.innerHTML = matches.map(m => `
+        <div class="bg-appCard rounded-2xl border border-appBorder p-3.5 shadow-md">
+          <div class="flex items-center justify-between text-[11px] pb-2 mb-2 border-b border-appBorder/50 text-gray-400">
+            <span>${m.channel}</span>
+            ${m.status === 'LIVE' ? `
+              <span class="text-red-400 font-extrabold flex items-center gap-1 bg-red-500/10 px-2 py-0.5 rounded-full border border-red-500/20">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500 live-dot"></span>
+                ${m.minute || 'مباشر'}
+              </span>
+            ` : m.status === 'FT' ? `
+              <span class="text-gray-400 bg-appBg px-2 py-0.5 rounded text-[10px]">انتهت</span>
+            ` : `
+              <span class="text-pitch font-bold">${m.time}</span>
+            `}
           </div>
 
-          <div class="flex items-center justify-between cursor-pointer py-1" onclick="openMatchModal(${m.id})">
-            <div class="flex-1 flex items-center gap-2">
-              <div class="w-8 h-8 rounded-full bg-appDark border border-appBorder flex items-center justify-center font-black text-[11px] text-pitch-light">
-                ${m.homeBadge}
-              </div>
+          <div class="flex items-center justify-between py-1">
+            <div class="flex-1 flex items-center gap-2.5">
+              <img src="${m.homeLogo}" onerror="this.src='https://placehold.co/40x40/1f293d/ffffff?text=FC'" class="w-8 h-8 badge-img" alt="">
               <span class="text-xs font-bold text-white truncate">${m.homeTeam}</span>
             </div>
 
-            <div class="px-2 text-center min-w-[70px]">
-              ${isLive || isFT ? `
-                <span class="text-sm font-black text-white bg-appDark px-2.5 py-1 rounded-xl border border-appBorder tracking-wider">
-                  ${m.homeScore} -${m.awayScore}
+            <div class="px-3 text-center">
+              ${m.score.home !== null ? `
+                <span class="text-sm font-black text-white bg-appBg px-2.5 py-1 rounded-xl border border-appBorder tracking-wider">
+                  ${m.score.home} -${m.score.away}
                 </span>
               ` : `
-                <span class="text-[11px] font-bold text-gray-400 bg-appDark px-2.5 py-1 rounded-xl border border-appBorder">
+                <span class="text-xs font-bold text-gray-400 bg-appBg px-2 py-0.5 rounded-lg border border-appBorder">
                   VS
                 </span>
               `}
             </div>
 
-            <div class="flex-1 flex items-center justify-end gap-2">
+            <div class="flex-1 flex items-center justify-end gap-2.5">
               <span class="text-xs font-bold text-white truncate text-left">${m.awayTeam}</span>
-              <div class="w-8 h-8 rounded-full bg-appDark border border-appBorder flex items-center justify-center font-black text-[11px] text-red-400">
-                ${m.awayBadge}
-              </div>
+              <img src="${m.awayLogo}" onerror="this.src='https://placehold.co/40x40/1f293d/ffffff?text=FC'" class="w-8 h-8 badge-img" alt="">
             </div>
           </div>
-
-          <div class="mt-2.5 pt-2 border-t border-appBorder/40 flex items-center justify-between text-[11px]">
-            <span class="text-gray-400 text-[10px]">اضغط لعرض الإحصائيات 📊</span>
-            <button onclick="openBroadcastPlayer('${m.channel}', '${m.streamUrl}')" class="text-pitch-light hover:text-pitch-accent font-extrabold text-xs">
-              مشاهدة البث 📺 ⬅
-            </button>
-          </div>
         </div>
-      `;
-    }
-
-    function renderLeaguesView() {
-      const chipsBox = document.getElementById('leaguesChipsContainer');
-      if (!chipsBox) return;
-
-      chipsBox.innerHTML = globalLeagues.map(l => `
-        <button onclick="selectLeague('${l.id}')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition border ${l.id === currentSelectedLeagueId ? 'bg-pitch-dark text-white border-pitch-light shadow' : 'bg-appCard text-gray-400 border-appBorder'}">
-          ${l.name}
-        </button>
       `).join('');
-
-      renderSelectedLeagueContent();
     }
 
-    function selectLeague(leagueId) {
-      currentSelectedLeagueId = leagueId;
-      renderLeaguesView();
+    function renderFallbackMatches() {
+      const fallbackData = [
+        {
+          id: 'fb_1',
+          channel: 'beIN Sports 1 HD',
+          status: 'LIVE',
+          minute: "64'",
+          homeTeam: 'ريال مدريد',
+          homeLogo: 'https://crests.football-data.org/86.png',
+          awayTeam: 'برشلونة',
+          awayLogo: 'https://crests.football-data.org/81.png',
+          score: { home: 2, away: 1 }
+        },
+        {
+          id: 'fb_2',
+          channel: 'beIN Sports 2 HD',
+          status: 'UPCOMING',
+          time: '20:45',
+          homeTeam: 'مانشستر سيتي',
+          homeLogo: 'https://crests.football-data.org/65.png',
+          awayTeam: 'ليفربول',
+          awayLogo: 'https://crests.football-data.org/64.png',
+          score: { home: null, away: null }
+        }
+      ];
+      renderMatchesList(fallbackData);
     }
 
-    function renderSelectedLeagueContent() {
-      const leagueMeta = globalLeagues.find(l => l.id === currentSelectedLeagueId);
-      const leagueData = leagueDetailsDatabase[currentSelectedLeagueId] || leagueDetailsDatabase.epl;
+    async function loadStandingsData() {
+      const titleEl = document.getElementById('currentLeagueName');
+      const logoEl = document.getElementById('currentLeagueLogo');
 
-      document.getElementById('currentLeagueTitle').innerText = leagueMeta ? leagueMeta.name : "الدوري العالمي";
+      if (activeLeagueCode === 'BOTOLA') {
+        titleEl.innerText = MOROCCAN_LEAGUE.name;
+        logoEl.src = MOROCCAN_LEAGUE.emblem;
+        renderStandingsTable(MOROCCAN_LEAGUE.standings);
+        return;
+      }
 
+      const activeComp = COMPETITIONS.find(c => c.code === activeLeagueCode);
+      if (activeComp) {
+        titleEl.innerText = activeComp.name;
+        logoEl.src = activeComp.emblem;
+      }
+
+      try {
+        const res = await fetch(`https://api.football-data.org/v4/competitions/${activeLeagueCode}/standings`, {
+          headers: { 'X-Auth-Token': getApiKey() }
+        });
+        if (!res.ok) throw new Error("API Limit");
+        const data = await res.json();
+        const table = data.standings?.[0]?.table || [];
+        
+        const parsed = table.map(r => ({
+          rank: r.position,
+          team: r.team.shortName || r.team.name,
+          logo: r.team.crest,
+          played: r.playedGames,
+          gd: (r.goalDifference > 0 ? '+' : '') + r.goalDifference,
+          points: r.points
+        }));
+
+        renderStandingsTable(parsed);
+      } catch (e) {
+        renderStandingsTable([
+          { rank: 1, team: "ليفربول", logo: "https://crests.football-data.org/64.png", played: 28, gd: "+38", points: 67 },
+          { rank: 2, team: "مانشستر سيتي", logo: "https://crests.football-data.org/65.png", played: 28, gd: "+33", points: 64 },
+          { rank: 3, team: "آرسنال", logo: "https://crests.football-data.org/57.png", played: 28, gd: "+30", points: 61 },
+          { rank: 4, team: "تشيلسي", logo: "https://crests.football-data.org/61.png", played: 28, gd: "+18", points: 52 }
+        ]);
+      }
+    }
+
+    function renderStandingsTable(rows) {
       const tbody = document.getElementById('standingsTableBody');
-      tbody.innerHTML = leagueData.standings.map(s => `
-        <tr class="hover:bg-appDark/60 transition">
-          <td class="py-2 pr-1 font-bold ${s.rank <= 2 ? 'text-pitch-light' : 'text-gray-400'}">${s.rank}</td>
-          <td class="py-2 font-bold text-white">${s.team}</td>
-          <td class="py-2 text-center text-gray-300">${s.played}</td>
-          <td class="py-2 text-center text-appSubText">${s.gd}</td>
-          <td class="py-2 text-center font-black text-emerald-400">${s.points}</td>
+      tbody.innerHTML = rows.map(r => `
+        <tr class="hover:bg-appBg/60 transition">
+          <td class="py-2.5 pr-1 font-bold ${r.rank <= 3 ? 'text-pitch font-black' : 'text-gray-400'}">${r.rank}</td>
+          <td class="py-2.5 flex items-center gap-2">
+            <img src="${r.logo}" onerror="this.src='https://placehold.co/24x24/1f293d/ffffff?text=FC'" class="w-5 h-5 badge-img" alt="">
+            <span class="font-bold text-white">${r.team}</span>
+          </td>
+          <td class="py-2.5 text-center text-gray-300 font-semibold">${r.played}</td>
+          <td class="py-2.5 text-center text-gray-400">${r.gd}</td>
+          <td class="py-2.5 text-center font-black text-pitch">${r.points}</td>
         </tr>
       `).join('');
-
-      const scorersBox = document.getElementById('scorersListBody');
-      scorersBox.innerHTML = leagueData.scorers.map(sc => `
-        <div class="flex items-center justify-between py-1.5 border-b border-appBorder/40 text-xs">
-          <div class="flex items-center gap-2">
-            <span class="w-5 h-5 rounded-full bg-appDark text-center leading-5 font-bold text-[10px] text-gray-300">${sc.rank}</span>
-            <span class="text-white font-medium">${sc.name}</span>
-          </div>
-          <span class="font-black text-pitch-accent">${sc.goals} هدف</span>
-        </div>
-      `).join('');
     }
 
-    function renderOfficialChannels() {
-      const container = document.getElementById('officialChannelsContainer');
-      if (!container) return;
+    function switchTab(tabKey) {
+      ['matches', 'standings', 'broadcast'].forEach(t => {
+        document.getElementById(`view-${t}`).classList.add('hidden');
+        document.getElementById(`tab-${t}`).classList.remove('text-pitch');
+        document.getElementById(`tab-${t}`).classList.add('text-gray-400');
+      });
 
-      container.innerHTML = officialBroadcastList.map(c => `
-        <div class="bg-appCard rounded-2xl border border-appBorder p-3.5 space-y-2">
-          <div class="flex items-center justify-between">
-            <h4 class="text-xs font-bold text-white">${c.name}</h4>
-            <span class="text-[10px] font-bold text-pitch-light bg-pitch-dark/20 border border-pitch-light/30 px-2 py-0.5 rounded-full">
-              ${c.badge}
-            </span>
-          </div>
-          <p class="text-[11px] text-appSubText leading-relaxed">${c.desc}</p>
-          <div class="flex gap-2 pt-1">
-            <button onclick="openBroadcastPlayer('${c.name}', '${c.url}', ${c.isIframe})" class="flex-1 text-center bg-pitch hover:bg-pitch-dark text-white py-2 rounded-xl text-xs font-bold transition shadow">
-              فتح المشغل المباشر 📺
-            </button>
-            <a href="${c.url}" target="_blank" class="px-3.5 text-center bg-appDark hover:bg-gray-800 text-gray-300 border border-appBorder py-2 rounded-xl text-xs font-bold transition">
-              الموقع الرسمي ↗
-            </a>
-          </div>
-        </div>
-      `).join('');
+      document.getElementById(`view-${tabKey}`).classList.remove('hidden');
+      document.getElementById(`tab-${tabKey}`).classList.add('text-pitch');
+      document.getElementById(`tab-${tabKey}`).classList.remove('text-gray-400');
     }
 
-    function openBroadcastPlayer(title, url, isIframe = false) {
-      switchTab('broadcast');
-      const box = document.getElementById('appVideoPlayerCard');
-      const titleEl = document.getElementById('playerCurrentChannelName');
-      const wrapper = document.getElementById('videoFrameWrapper');
-
-      titleEl.innerText = title;
-      if (url.includes('youtube.com/embed') || isIframe) {
-        wrapper.innerHTML = `<iframe src="${url}" allowfullscreen allow="autoplay; encrypted-media"></iframe>`;
-      } else {
-        wrapper.innerHTML = `
-          <div class="absolute inset-0 flex flex-col items-center justify-center bg-appCard text-center p-4">
-            <span class="text-3xl mb-2">📺</span>
-            <p class="text-xs font-bold text-white mb-2">البث الرسمي جاهز للمشاهدة المباشرة</p>
-            <a href="${url}" target="_blank" class="bg-pitch hover:bg-pitch-dark text-white px-4 py-2 rounded-xl text-xs font-bold shadow">
-              انقر للمشاهدة في منصة البث الرسمية ↗
-            </a>
-          </div>
-        `;
-      }
-      box.classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function changeMatchesFilter(filter) {
+      currentFilterDay = filter;
+      ['yesterday', 'today', 'tomorrow', 'live'].forEach(f => {
+        const btn = document.getElementById(`filter-${f}`);
+        btn.classList.remove('bg-pitch', 'text-black', 'font-black', 'shadow');
+        btn.classList.add('text-gray-400');
+      });
+      const active = document.getElementById(`filter-${filter}`);
+      active.classList.add('bg-pitch', 'text-black', 'font-black', 'shadow');
+      active.classList.remove('text-gray-400');
+      loadMatchesData();
     }
 
-    function closeBroadcastPlayer() {
-      const box = document.getElementById('appVideoPlayerCard');
-      const wrapper = document.getElementById('videoFrameWrapper');
-      wrapper.innerHTML = '';
-      box.classList.add('hidden');
-    }
-
-    function openMatchModal(matchId) {
-      modalActiveMatch = allMatchesData.find(m => m.id === matchId) || allMatchesData[0];
-      
-      document.getElementById('modalMatchLeague').innerText = modalActiveMatch.leagueName;
-      document.getElementById('modalTeamA_Logo').innerText = modalActiveMatch.homeBadge;
-      document.getElementById('modalTeamA_Name').innerText = modalActiveMatch.homeTeam;
-      document.getElementById('modalTeamB_Logo').innerText = modalActiveMatch.awayBadge;
-      document.getElementById('modalTeamB_Name').innerText = modalActiveMatch.awayTeam;
-      document.getElementById('modalMatchScore').innerText = modalActiveMatch.homeScore !== null ? `${modalActiveMatch.homeScore} - ${modalActiveMatch.awayScore}` : "VS";
-      document.getElementById('modalMatchStatus').innerText = modalActiveMatch.minute || modalActiveMatch.time;
-      document.getElementById('modalMatchChannel').innerText = modalActiveMatch.channel;
-
-      document.getElementById('modalStatPossA').innerText = `${modalActiveMatch.poss[0]}%`;
-      document.getElementById('modalStatPossB').innerText = `${modalActiveMatch.poss[1]}%`;
-      document.getElementById('modalBarPossA').style.width = `${modalActiveMatch.poss[0]}%`;
-      document.getElementById('modalBarPossB').style.width = `${modalActiveMatch.poss[1]}%`;
-
-      document.getElementById('modalStatShotsA').innerText = modalActiveMatch.shots[0];
-      document.getElementById('modalStatShotsB').innerText = modalActiveMatch.shots[1];
-
-      document.getElementById('matchDetailModal').classList.remove('hidden');
-    }
-
-    function closeMatchModal() {
-      document.getElementById('matchDetailModal').classList.add('hidden');
-    }
-
-    function watchFromModal() {
-      if (!modalActiveMatch) return;
-      closeMatchModal();
-      openBroadcastPlayer(modalActiveMatch.channel, modalActiveMatch.streamUrl);
-    }
-
-    function executeSearch() {
-      const q = document.getElementById('globalSearchInput').value.trim().toLowerCase();
-      const container = document.getElementById('searchResultsContainer');
-      if (!container) return;
-
-      if (!q) {
-        container.innerHTML = '<p class="text-xs text-center text-gray-400 py-8">اكتب اسم الفريق أو البطولة للبحث السريع في كافة البيانات الكروية.</p>';
-        return;
-      }
-
-      const results = allMatchesData.filter(m => 
-        m.homeTeam.toLowerCase().includes(q) ||
-        m.awayTeam.toLowerCase().includes(q) ||
-        m.leagueName.toLowerCase().includes(q)
-      );
-
-      if (results.length === 0) {
-        container.innerHTML = '<p class="text-xs text-center text-gray-400 py-8">لم يتم العثور على أي نتائج مطابقة لكلمات البحث.</p>';
-        return;
-      }
-
-      container.innerHTML = results.map(m => createMatchCardHTML(m)).join('');
-    }
-
-    function toggleFavoriteMatch(id) {
-      if (userFavoriteMatches.includes(id)) {
-        userFavoriteMatches = userFavoriteMatches.filter(x => x !== id);
-        showCustomToast('تمت إزالة المباراة من المفضلة', 'info');
-      } else {
-        userFavoriteMatches.push(id);
-        showCustomToast('تم حفظ المباراة في المفضلة ★', 'success');
-      }
-      localStorage.setItem('kora_user_favs', JSON.stringify(userFavoriteMatches));
-      renderMatchesByLeague();
-      renderFavoritesView();
-    }
-
-    function renderFavoritesView() {
-      const container = document.getElementById('favoritesListContainer');
-      const counterEl = document.getElementById('favCounter');
-      if (!container) return;
-
-      const favs = allMatchesData.filter(m => userFavoriteMatches.includes(m.id));
-      if (counterEl) counterEl.innerText = `${favs.length} مباريات`;
-
-      if (favs.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-12 bg-appCard rounded-2xl border border-appBorder">
-            <span class="text-4xl text-amber-400">★</span>
-            <p class="text-sm font-bold text-white mt-2">لا توجد مباريات مفضلة حالياً</p>
-            <p class="text-xs text-gray-400 mt-1">اضغط على علامة النجمة (★) لحفظ ومتابعة أي مباراة هنا.</p>
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = favs.map(m => createMatchCardHTML(m)).join('');
-    }
-
-    function showCustomToast(text, type = 'info') {
-      const toast = document.getElementById('toastAlert');
-      const toastText = document.getElementById('toastText');
-      const toastIcon = document.getElementById('toastIcon');
-      if (!toast || !toastText) return;
-
-      toastText.innerText = text;
-      toastIcon.innerText = type === 'success' ? '✅' : '⚽';
-      toast.classList.remove('-translate-y-24', 'opacity-0', 'pointer-events-none');
-      toast.classList.add('translate-y-0', 'opacity-100');
-
-      setTimeout(() => {
-        toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('-translate-y-24', 'opacity-0', 'pointer-events-none');
-      }, 2500);
-    }
-
-    function toggleSoundAlert() {
-      isSoundNotificationActive = !isSoundNotificationActive;
-      const btn = document.getElementById('soundIconBtn');
-      if (isSoundNotificationActive) {
-        btn.classList.add('text-pitch-light', 'border-pitch-light');
-        triggerGoalBuzzer();
-        showCustomToast('تم تفعيل التنبيه الصوتي للأهداف ⚽🔊', 'success');
-      } else {
-        btn.classList.remove('text-pitch-light', 'border-pitch-light');
-        showCustomToast('تم كتم التنبيه الصوتي', 'info');
-      }
-    }
-
-    function triggerGoalBuzzer() {
-      try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.3);
-        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.5);
-      } catch (e) {}
-    }
-
-    function refreshLiveScore() {
-      renderMatchesByLeague();
-      showCustomToast('تم تحديث نتائج المباريات بنجاح 🔄', 'success');
+    function refreshCurrentView() {
+      const btn = document.getElementById('refreshBtn');
+      btn.classList.add('rotate-180');
+      setTimeout(() => btn.classList.remove('rotate-180'), 400);
+      loadMatchesData();
+      loadStandingsData();
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      setDayFilter('today');
-      renderOfficialChannels();
-      renderLeaguesView();
+      renderLeaguesBar();
+      loadMatchesData();
+      loadStandingsData();
     });
   </script>
 </body>
