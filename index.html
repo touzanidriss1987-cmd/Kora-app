@@ -14,16 +14,16 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     body {
-      background-color: #080c15;
+      background-color: #070a12;
       color: #ffffff;
-      padding-bottom: 30px;
+      padding-bottom: 40px;
     }
-    /* المشغل الثابت */
+    /* المشغل الذكي */
     .player-header {
       position: sticky;
       top: 0;
       z-index: 999;
-      background-color: #000000;
+      background-color: #000;
       border-bottom: 2px solid #1e293b;
       box-shadow: 0 4px 20px rgba(0,0,0,0.8);
     }
@@ -35,16 +35,43 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      overflow: hidden;
     }
-    video {
+    video, iframe {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      border: none;
       background: #000;
+      object-fit: contain;
     }
+    /* شاشة الانتظار */
+    .player-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(7, 10, 18, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      text-align: center;
+      z-index: 10;
+    }
+    .player-overlay.hidden { display: none; }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid #e11d48;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 10px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
     .player-info-bar {
       background-color: #0f172a;
-      padding: 10px 14px;
+      padding: 8px 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -52,54 +79,53 @@
     .channel-badge {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13px;
+      gap: 6px;
+      font-size: 12px;
       font-weight: bold;
       color: #38bdf8;
     }
     .live-dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background-color: #ef4444;
       border-radius: 50%;
       display: inline-block;
       animation: pulse 1.5s infinite;
     }
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.4; }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
     }
     .fs-btn {
       background-color: #1e293b;
       color: #f8fafc;
       border: 1px solid #334155;
-      padding: 5px 12px;
-      border-radius: 8px;
-      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
       font-weight: bold;
       cursor: pointer;
     }
-    /* المحتوى */
+    /* الأقسام */
     .container {
       max-width: 500px;
       margin: 0 auto;
       padding: 12px;
     }
-    /* أقسام الدول */
     .countries-scroll {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding: 6px 0 12px 0;
+      padding: 6px 0 10px 0;
     }
     .countries-scroll::-webkit-scrollbar { display: none; }
     .country-tab {
       background-color: #0f172a;
-      color: #cbd5e1;
+      color: #94a3b8;
       border: 1px solid #1e293b;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 12px;
+      padding: 7px 12px;
+      border-radius: 18px;
+      font-size: 11px;
       font-weight: bold;
       white-space: nowrap;
       cursor: pointer;
@@ -108,13 +134,11 @@
       background-color: #e11d48;
       color: #ffffff;
       border-color: #f43f5e;
-      box-shadow: 0 2px 10px rgba(225, 29, 72, 0.4);
     }
-    /* قائمة القنوات */
     .section-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
-      margin: 6px 0 12px 0;
+      margin: 6px 0 10px 0;
       color: #94a3b8;
       display: flex;
       align-items: center;
@@ -123,39 +147,38 @@
     .channels-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 9px;
     }
     .channel-card {
       background-color: #0f172a;
       border: 1px solid #1e293b;
-      border-radius: 14px;
-      padding: 12px;
+      border-radius: 12px;
+      padding: 10px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       cursor: pointer;
-      transition: transform 0.1s, background-color 0.2s;
     }
     .channel-card:active {
-      transform: scale(0.96);
       background-color: #1e293b;
+      transform: scale(0.97);
     }
     .channel-icon {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       background-color: #1e293b;
-      border-radius: 10px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 18px;
       flex-shrink: 0;
     }
     .channel-meta {
       overflow: hidden;
     }
     .channel-name {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: bold;
       color: #ffffff;
       white-space: nowrap;
@@ -163,41 +186,20 @@
       text-overflow: ellipsis;
     }
     .channel-type {
-      font-size: 10px;
+      font-size: 9px;
       color: #64748b;
-      margin-top: 3px;
       display: block;
+      margin-top: 2px;
     }
-    /* تشغيل خارجي */
-    .custom-box {
-      margin-top: 18px;
-      background-color: #0f172a;
-      border: 1px solid #1e293b;
-      border-radius: 14px;
-      padding: 12px;
-    }
-    .custom-input {
-      width: 100%;
-      background-color: #080c15;
+    .stream-alert {
+      background: #1e293b;
       border: 1px solid #334155;
-      border-radius: 8px;
-      padding: 9px;
-      color: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 12px;
       font-size: 11px;
-      margin: 8px 0;
-      outline: none;
-      direction: ltr;
-    }
-    .custom-btn {
-      width: 100%;
-      background-color: #e11d48;
-      color: #fff;
-      border: none;
-      padding: 9px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 12px;
-      cursor: pointer;
+      color: #cbd5e1;
+      text-align: center;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -206,98 +208,82 @@
 
   <!-- المشغل -->
   <div class="player-header">
-    <div class="video-box">
+    <div class="video-box" id="videoBoxWrapper">
       <video id="player" controls playsinline></video>
+      <div id="playerOverlay" class="player-overlay">
+        <div id="overlayLoader" class="spinner hidden"></div>
+        <h4 id="overlayTitle" style="font-size: 13px; font-weight: bold;">اختر أي قناة لبدء البث الفوري</h4>
+        <p id="overlaySub" style="font-size: 10px; color: #94a3b8; margin-top: 4px;">بث مباشر وسريع بدون تقطيع</p>
+      </div>
     </div>
+
     <div class="player-info-bar">
       <div class="channel-badge">
         <span class="live-dot"></span>
-        <span id="playingTitle">اختر قناة لبدء المشاهدة</span>
+        <span id="playingTitle">كورة TV Live</span>
       </div>
-      <button class="fs-btn" onclick="fullscreen()">⛶ ملء الشاشة</button>
+      <button class="fs-btn" onclick="fullscreen()">⛶ شاشة كاملة</button>
     </div>
   </div>
 
   <div class="container">
-    <!-- أزرار الأقسام -->
+    <!-- الأقسام -->
     <div class="countries-scroll" id="navTabs"></div>
 
     <div class="section-title">
-      <span id="catName">قنوات المغرب</span>
+      <span id="catName">قنوات البث المباشر</span>
       <span id="catCount" style="color: #e11d48;">6 قنوات</span>
     </div>
 
     <!-- شبكة القنوات -->
     <div class="channels-grid" id="channelsGrid"></div>
 
-    <!-- مشغل روابط إضافي -->
-    <div class="custom-box">
-      <div style="font-size: 12px; font-weight: bold;">⚡ تشغيل رابط سيرفر مخصص (M3U8):</div>
-      <input type="text" id="streamInput" class="custom-input" placeholder="https://domain.com/live.m3u8">
-      <button class="custom-btn" onclick="playCustom()">تشغيل في المشغل فوراً</button>
+    <div class="stream-alert">
+      💡 <b>ملاحظة:</b> القنوات تعمل بسيرفرات فائقة السرعة؛ انقر على أي قناة وسيبدأ الفيديو فوراً خلال ثانية أو ثانيتين.
     </div>
   </div>
 
   <script>
-    const CHANNELS_DATA = {
+    const CHANNELS_DATABASE = {
+      arabic_news: {
+        title: "أخبار وعالم عربي",
+        flag: "🌍",
+        list: [
+          { name: "الجزيرة الإخبارية (مباشر)", type: "أخبار دولية", icon: "🎙️", streamType: "iframe", url: "https://www.youtube.com/embed/bNyUyrR0PHo?autoplay=1" },
+          { name: "سكاي نيوز عربية", type: "أخبار عاجلة", icon: "⚡", streamType: "iframe", url: "https://www.youtube.com/embed/w_Ma8oQLmSM?autoplay=1" },
+          { name: "فرانس 24 بالعربية", type: "أخبار عالمية", icon: "🇫🇷", streamType: "iframe", url: "https://www.youtube.com/embed/h3MuIUNMwzI?autoplay=1" },
+          { name: "TRT عربي الإخبارية", type: "أخبار", icon: "🌐", streamType: "iframe", url: "https://www.youtube.com/embed/j_n4d9QzF7k?autoplay=1" }
+        ]
+      },
       morocco: {
         title: "قنوات المغرب",
         flag: "🇲🇦",
         list: [
-          { name: "الرياضية Arryadia", type: "رياضة", icon: "⚽", url: "https://live-snrt.ercdn.net/snrt/arryadia/index.m3u8" },
-          { name: "الأولى Al Aoula", type: "عامة", icon: "🇲🇦", url: "https://live-snrt.ercdn.net/snrt/aloula/index.m3u8" },
-          { name: "قناة 2M دوزيم", type: "منوعات", icon: "📺", url: "https://live.2m.ma/hls/live.m3u8" },
-          { name: "المغربية Al Maghribia", type: "أخبار", icon: "📰", url: "https://live-snrt.ercdn.net/snrt/almaghribia/index.m3u8" },
-          { name: "تمازيغت Tamazight", type: "ثقافة", icon: "🏔️", url: "https://live-snrt.ercdn.net/snrt/tamazight/index.m3u8" },
-          { name: "ميدي 1 Medi1 TV", type: "أخبار", icon: "🌍", url: "https://medi1tv.vedge.infomaniak.com/livecast/medi1tv/manifest.m3u8" }
+          { name: "ميدي 1 تيفي Medi1 TV", type: "إخبارية مغربية", icon: "🌍", streamType: "iframe", url: "https://www.youtube.com/embed/1LgZ88Vp3n4?autoplay=1" },
+          { name: "الرياضية المغربية Arryadia", type: "رياضة مغربية", icon: "⚽", streamType: "hls", url: "https://live-snrt.ercdn.net/snrt/arryadia/index.m3u8" },
+          { name: "الأولى Al Aoula", type: "قناة رسمية", icon: "🇲🇦", streamType: "hls", url: "https://live-snrt.ercdn.net/snrt/aloula/index.m3u8" },
+          { name: "قناة 2M المغربية", type: "منوعات", icon: "📺", streamType: "hls", url: "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/2m_monde/hls_video_ts/index.m3u8" }
         ]
       },
       sports: {
-        title: "قنوات رياضية عالمية",
+        title: "قنوات رياضية",
         flag: "🏆",
         list: [
-          { name: "ريال مدريد TV", type: "أندية كبرى", icon: "👑", url: "https://rmtv.akamaized.net/hls/live/2043154/rmtv-es/master.m3u8" },
-          { name: "ريد بول سبورت", type: "رياضات حماسية", icon: "🏎️", url: "https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8" },
-          { name: "دبي الرياضية 1", type: "رياضة عربية", icon: "⚽", url: "https://dmisportslive.akamaized.net/hls/live/2014022/dubaisports1/master.m3u8" },
-          { name: "الشارقة الرياضية", type: "رياضة", icon: "🏆", url: "https://shctv.akamaized.net/hls/live/1000965/sharjahsportstv/master.m3u8" }
-        ]
-      },
-      arabic: {
-        title: "قنوات العالم العربي",
-        flag: "🌍",
-        list: [
-          { name: "الجزيرة الإخبارية", type: "أخبار", icon: "🎙️", url: "https://live-hls-web-aje.getaj.net/AJE/03.m3u8" },
-          { name: "الحدث الإخبارية", type: "أخبار عاجلة", icon: "⚡", url: "https://mbc-live.akamaized.net/hls/live/2034177/hadath/master.m3u8" },
-          { name: "العربية Al Arabiya", type: "أخبار", icon: "📡", url: "https://mbc-live.akamaized.net/hls/live/2034176/arabiya/master.m3u8" },
-          { name: "بي بي سي عربي", type: "أخبار دولية", icon: "🌐", url: "https://vs-hls-push-ww-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_arabic_tv/pc_hd_abr_v2.m3u8" }
-        ]
-      },
-      france: {
-        title: "قنوات فرنسا",
-        flag: "🇫🇷",
-        list: [
-          { name: "فرانس 24 (العربية)", type: "أخبار", icon: "🇫🇷", url: "https://static.france24.com/live/F24_AR_HI_HLS/live_tv.m3u8" },
-          { name: "France 24 Français", type: "Info", icon: "🗼", url: "https://static.france24.com/live/F24_FR_HI_HLS/live_tv.m3u8" },
-          { name: "BFM TV Live", type: "Actualités", icon: "🗞️", url: "https://live.bfmtv.com/hls/live/2039239/BFMTV_HLS/master.m3u8" }
-        ]
-      },
-      spain: {
-        title: "قنوات إسبانيا",
-        flag: "🇪🇸",
-        list: [
-          { name: "RTVE 24h España", type: "Noticias", icon: "🇪🇸", url: "https://rtvelivestream.akamaized.net/rtvesec/24h/24h_main.m3u8" },
-          { name: "Canal Sur Andalucía", type: "Variedades", icon: "💃", url: "https://directo.canalsur.es/csur-hls/live.m3u8" }
+          { name: "قناة ريد بول سبورت", type: "رياضة حماسية", icon: "🏎️", streamType: "hls", url: "https://rbmn-live.akamaized.net/hls/live/590964/BoRB-AT/master.m3u8" },
+          { name: "قناة ريال مدريد TV", type: "أندية عالمية", icon: "👑", streamType: "hls", url: "https://rmtv.akamaized.net/hls/live/2043154/rmtv-es/master.m3u8" },
+          { name: "ملخصات beIN Sports", type: "أهداف ومباريات", icon: "⚽", streamType: "iframe", url: "https://www.youtube.com/embed/live_stream?channel=UC8x6PqGfE8X1sQGgY9fL7yA&autoplay=1" }
         ]
       }
     };
 
-    let activeCategory = 'morocco';
-    let hls = null;
+    let activeCategory = 'arabic_news';
+    let hlsInstance = null;
+    let streamTimeout = null;
 
     function renderTabs() {
       const container = document.getElementById('navTabs');
-      container.innerHTML = Object.keys(CHANNELS_DATA).map(key => {
-        const item = CHANNELS_DATA[key];
+      container.innerHTML = Object.keys(CHANNELS_DATABASE).map(key => {
+        const item = CHANNELS_DATABASE[key];
         return `<button class="country-tab ${key === activeCategory ? 'active' : ''}" onclick="setCategory('${key}')">${item.flag} ${item.title}</button>`;
       }).join('');
     }
@@ -309,13 +295,13 @@
     }
 
     function renderChannels() {
-      const data = CHANNELS_DATA[activeCategory];
+      const data = CHANNELS_DATABASE[activeCategory];
       document.getElementById('catName').innerText = data.title;
       document.getElementById('catCount').innerText = data.list.length + " قنوات";
       
       const grid = document.getElementById('channelsGrid');
       grid.innerHTML = data.list.map(ch => `
-        <div class="channel-card" onclick="playChannel('${ch.name}', '${ch.url}')">
+        <div class="channel-card" onclick="startPlayChannel('${ch.name}', '${ch.url}', '${ch.streamType}')">
           <div class="channel-icon">${ch.icon}</div>
           <div class="channel-meta">
             <div class="channel-name">${ch.name}</div>
@@ -325,44 +311,91 @@
       `).join('');
     }
 
-    function playChannel(name, url) {
-      const video = document.getElementById('player');
-      document.getElementById('playingTitle').innerText = name;
+    function startPlayChannel(name, url, streamType) {
+      const wrapper = document.getElementById('videoBoxWrapper');
+      const overlay = document.getElementById('playerOverlay');
+      const loader = document.getElementById('overlayLoader');
+      const title = document.getElementById('overlayTitle');
+      const sub = document.getElementById('overlaySub');
+      const badge = document.getElementById('playingTitle');
 
-      if (hls) {
-        hls.destroy();
+      badge.innerText = name;
+      clearTimeout(streamTimeout);
+
+      if (hlsInstance) {
+        hlsInstance.destroy();
+        hlsInstance = null;
       }
 
+      // قنوات البث الفوري
+      if (streamType === 'iframe') {
+        overlay.classList.add('hidden');
+        wrapper.innerHTML = `<iframe src="${url}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      // تشغيل HLS
+      wrapper.innerHTML = `
+        <video id="player" controls playsinline autoplay></video>
+        <div id="playerOverlay" class="player-overlay">
+          <div id="overlayLoader" class="spinner"></div>
+          <h4 id="overlayTitle" style="font-size: 13px; font-weight: bold;">جاري الاتصال بسيرفر البث...</h4>
+          <p id="overlaySub" style="font-size: 10px; color: #94a3b8; margin-top: 4px;">لحظات قليلة</p>
+        </div>
+      `;
+
+      const video = document.getElementById('player');
+      const currentOverlay = document.getElementById('playerOverlay');
+
+      streamTimeout = setTimeout(() => {
+        if (currentOverlay && !currentOverlay.classList.contains('hidden')) {
+          document.getElementById('overlayLoader').classList.add('hidden');
+          document.getElementById('overlayTitle').innerText = 'السيرفر بطيء أو محجوب في منطقتك';
+          document.getElementById('overlaySub').innerText = 'اختر قناة أخرى تعمل فوراً ⚡';
+        }
+      }, 6000);
+
       if (Hls.isSupported()) {
-        hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+        hlsInstance = new Hls({ enableWorker: true });
+        hlsInstance.loadSource(url);
+        hlsInstance.attachMedia(video);
+        hlsInstance.on(Hls.Events.MANIFEST_PARSED, function() {
+          clearTimeout(streamTimeout);
+          currentOverlay.classList.add('hidden');
           video.play().catch(e => console.log(e));
+        });
+        hlsInstance.on(Hls.Events.ERROR, function(event, data) {
+          if (data.fatal) {
+            clearTimeout(streamTimeout);
+            document.getElementById('overlayLoader').classList.add('hidden');
+            document.getElementById('overlayTitle').innerText = 'تعذر تشغيل هذا الرابط';
+            document.getElementById('overlaySub').innerText = 'يرجى اختيار قناة أخرى';
+          }
         });
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = url;
         video.addEventListener('loadedmetadata', function() {
+          clearTimeout(streamTimeout);
+          currentOverlay.classList.add('hidden');
           video.play();
         });
       }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function playCustom() {
-      const val = document.getElementById('streamInput').value.trim();
-      if (val) playChannel('قناة خارجية', val);
-    }
-
     function fullscreen() {
-      const video = document.getElementById('player');
-      if (video.requestFullscreen) video.requestFullscreen();
-      else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+      const box = document.getElementById('videoBoxWrapper');
+      if (box.requestFullscreen) box.requestFullscreen();
+      else if (box.webkitRequestFullscreen) box.webkitRequestFullscreen();
     }
 
     window.onload = function() {
       renderTabs();
       renderChannels();
+      const first = CHANNELS_DATABASE.arabic_news.list[0];
+      startPlayChannel(first.name, first.url, first.streamType);
     };
   </script>
 </body>
