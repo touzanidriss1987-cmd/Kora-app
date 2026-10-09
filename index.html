@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>كورة القدم</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -13,7 +13,7 @@
           fontFamily: { tajawal: ['Tajawal', 'sans-serif'] },
           colors: {
             pitch: { DEFAULT: '#059669', light: '#10b981', dark: '#047857' },
-            darkBg: '#0b0f19',
+            darkBg: '#090d16',
             darkCard: '#111827',
             darkBorder: '#1f2937'
           }
@@ -22,78 +22,126 @@
     }
   </script>
   <style>
-    body { font-family: 'Tajawal', sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Tajawal', sans-serif; user-select: none; }
   </style>
 </head>
-<body class="bg-darkBg text-white min-h-screen pb-20 select-none">
+<body class="bg-darkBg text-white min-h-screen pb-20">
 
-  <!-- Header -->
+  <!-- الرأس العلوي -->
   <header class="sticky top-0 z-40 bg-darkCard/95 border-b border-darkBorder px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-2">
-      <div class="w-8 h-8 rounded-lg bg-pitch flex items-center justify-center font-black text-white text-lg">⚽</div>
-      <h1 class="text-lg font-black text-pitch-light">كورة القدم</h1>
+      <div class="w-9 h-9 rounded-xl bg-pitch flex items-center justify-center text-lg shadow-lg">⚽</div>
+      <div>
+        <h1 class="text-base font-black text-white">كورة القدم</h1>
+        <p class="text-[10px] text-pitch-light font-bold">مباريات اليوم & البث المباشر</p>
+      </div>
     </div>
-    <span class="text-xs bg-pitch-dark/50 border border-pitch-light/30 px-2 py-1 rounded-full text-emerald-300">مباشر الآن</span>
+    <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
   </header>
 
-  <main class="p-3 max-w-md mx-auto space-y-4">
-    <!-- Match Card -->
-    <div class="bg-darkCard rounded-2xl border border-darkBorder p-4 shadow-lg">
-      <div class="flex justify-between items-center text-xs text-gray-400 mb-3 border-b border-darkBorder pb-2">
-        <span>البطولة الاحترافية المغربية</span>
-        <span class="text-red-400 font-bold animate-pulse">الدقيقة 68'</span>
+  <main class="max-w-md mx-auto p-3 space-y-3.5">
+
+    <!-- كارت مباراة القمة المباشرة -->
+    <div class="bg-gradient-to-br from-pitch-dark/80 via-darkCard to-darkCard rounded-2xl border border-pitch-light/40 p-4 shadow-xl">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xs font-black text-pitch-light flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> قمة الجولة - مباشر
+        </span>
+        <span class="text-[10px] bg-red-500/20 text-red-300 font-bold px-2 py-0.5 rounded-full">الدقيقة 72'</span>
       </div>
+
       <div class="flex justify-between items-center py-2 text-center">
         <div class="flex-1">
-          <div class="w-12 h-12 mx-auto bg-darkBg rounded-full flex items-center justify-center font-bold text-emerald-400 text-sm">RCA</div>
-          <p class="text-xs font-bold mt-1">الرجاء</p>
+          <div class="w-12 h-12 mx-auto bg-darkBg rounded-full flex items-center justify-center font-bold text-emerald-400 text-xs border border-emerald-500/30">RCA</div>
+          <span class="text-xs font-bold block mt-1">الرجاء الرياضي</span>
         </div>
-        <div class="px-4">
+        <div class="px-2">
           <div class="text-2xl font-black bg-darkBg px-3 py-1 rounded-xl border border-darkBorder">2 - 1</div>
+          <span class="text-[10px] text-gray-400 block mt-1">البطولة المغربية</span>
         </div>
         <div class="flex-1">
-          <div class="w-12 h-12 mx-auto bg-darkBg rounded-full flex items-center justify-center font-bold text-red-500 text-sm">WAC</div>
-          <p class="text-xs font-bold mt-1">الوداد</p>
+          <div class="w-12 h-12 mx-auto bg-darkBg rounded-full flex items-center justify-center font-bold text-red-500 text-xs border border-red-500/30">WAC</div>
+          <span class="text-xs font-bold block mt-1">الوداد الرياضي</span>
         </div>
+      </div>
+
+      <div class="mt-3 pt-2 border-t border-darkBorder/60 flex items-center justify-between">
+        <span class="text-[11px] text-gray-300">📡 الرياضية المغربية TNT</span>
+        <a href="https://snrtlive.ma/arryadia" target="_blank" class="bg-pitch hover:bg-pitch-dark text-white px-3 py-1 rounded-lg text-xs font-bold shadow">
+          📺 مشاهدة البث
+        </a>
       </div>
     </div>
 
-    <!-- Standings Snippet -->
-    <div class="bg-darkCard rounded-2xl border border-darkBorder p-4">
-      <h3 class="text-xs font-bold text-gray-300 mb-2">ترتيب الدوري المغربي</h3>
-      <div class="space-y-1 text-xs">
-        <div class="flex justify-between py-1 border-b border-darkBorder/40">
-          <span>1. الرجاء الرياضي</span>
-          <span class="font-bold text-pitch-light">58 نقطة</span>
-        </div>
-        <div class="flex justify-between py-1 border-b border-darkBorder/40">
-          <span>2. الجيش الملكي</span>
-          <span class="font-bold text-pitch-light">57 نقطة</span>
-        </div>
-        <div class="flex justify-between py-1">
-          <span>3. نهضة بركان</span>
-          <span class="font-bold text-pitch-light">43 نقطة</span>
-        </div>
+    <!-- قائمة مباريات اليوم -->
+    <h3 class="text-xs font-extrabold text-gray-300 pt-1">مباريات اليوم المنقولة</h3>
+    
+    <div class="bg-darkCard rounded-2xl border border-darkBorder p-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-7 h-7 rounded-full bg-darkBg border border-darkBorder flex items-center justify-center text-[10px] font-bold">MCI</span>
+        <span class="text-xs font-bold">مانشستر سيتي</span>
+      </div>
+      <span class="text-xs font-black bg-darkBg px-2 py-1 rounded border border-darkBorder text-pitch-light">18:30</span>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold">آرسنال</span>
+        <span class="w-7 h-7 rounded-full bg-darkBg border border-darkBorder flex items-center justify-center text-[10px] font-bold text-red-400">ARS</span>
       </div>
     </div>
 
-    <!-- Official Broadcast -->
-    <div class="bg-darkCard rounded-2xl border border-darkBorder p-4 flex items-center justify-between">
-      <div>
-        <h4 class="text-xs font-bold">الرياضية المغربية TNT</h4>
-        <p class="text-[10px] text-gray-400">البث المباشر الرسمي المعتمد</p>
+    <div class="bg-darkCard rounded-2xl border border-darkBorder p-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-7 h-7 rounded-full bg-darkBg border border-darkBorder flex items-center justify-center text-[10px] font-bold">RMA</span>
+        <span class="text-xs font-bold">ريال مدريد</span>
       </div>
-      <a href="https://snrtlive.ma/arryadia" target="_blank" class="bg-pitch hover:bg-pitch-dark px-3 py-1.5 rounded-xl text-xs font-bold text-white transition">مشاهدة</a>
+      <span class="text-xs font-black bg-darkBg px-2 py-1 rounded border border-darkBorder text-pitch-light">21:00</span>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold">برشلونة</span>
+        <span class="w-7 h-7 rounded-full bg-darkBg border border-darkBorder flex items-center justify-center text-[10px] font-bold text-blue-400">FCB</span>
+      </div>
     </div>
+
+    <!-- جدول الترتيب -->
+    <div class="bg-darkCard rounded-2xl border border-darkBorder p-3.5 mt-3">
+      <h3 class="text-xs font-extrabold text-white mb-2">ترتيب البطولة الاحترافية</h3>
+      <table class="w-full text-right text-xs">
+        <tbody class="divide-y divide-darkBorder/40">
+          <tr><td class="py-1.5 font-bold text-pitch-light">1</td><td class="py-1.5 font-bold">الرجاء الرياضي</td><td class="py-1.5 text-left font-black text-pitch-light">58 ن</td></tr>
+          <tr><td class="py-1.5 font-bold text-gray-400">2</td><td class="py-1.5 font-bold">الجيش الملكي</td><td class="py-1.5 text-left font-black text-pitch-light">57 ن</td></tr>
+          <tr><td class="py-1.5 font-bold text-gray-400">3</td><td class="py-1.5 font-bold">نهضة بركان</td><td class="py-1.5 text-left font-black text-pitch-light">43 ن</td></tr>
+          <tr><td class="py-1.5 font-bold text-gray-400">4</td><td class="py-1.5 font-bold">الوداد الرياضي</td><td class="py-1.5 text-left font-black text-pitch-light">40 ن</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- قنوات البث المباشر الرسمية -->
+    <div class="bg-darkCard rounded-2xl border border-darkBorder p-3.5 space-y-2">
+      <h3 class="text-xs font-extrabold text-white">قنوات البث المباشر المعتمدة</h3>
+      
+      <div class="flex items-center justify-between p-2 rounded-xl bg-darkBg border border-darkBorder/60">
+        <div>
+          <span class="text-xs font-bold block">الرياضية المغربية TNT</span>
+          <span class="text-[10px] text-gray-400">بث مباشر مجاني</span>
+        </div>
+        <a href="https://snrtlive.ma/arryadia" target="_blank" class="text-xs bg-pitch px-2.5 py-1 rounded-lg text-white font-bold">مشاهدة ↗</a>
+      </div>
+
+      <div class="flex items-center justify-between p-2 rounded-xl bg-darkBg border border-darkBorder/60">
+        <div>
+          <span class="text-xs font-bold block">beIN SPORTS الإخبارية</span>
+          <span class="text-[10px] text-gray-400">الأهداف والملخصات</span>
+        </div>
+        <a href="https://www.youtube.com/@beINSPORTS" target="_blank" class="text-xs bg-red-600 px-2.5 py-1 rounded-lg text-white font-bold">مشاهدة ↗</a>
+      </div>
+    </div>
+
   </main>
 
-  <!-- Bottom Nav -->
-  <nav class="fixed bottom-0 left-0 right-0 bg-darkCard border-t border-darkBorder py-2 flex justify-around text-xs">
+  <!-- القائمة السفلية -->
+  <nav class="fixed bottom-0 left-0 right-0 bg-darkCard/95 border-t border-darkBorder py-2 flex justify-around text-xs z-40">
     <button class="text-pitch-light font-bold flex flex-col items-center"><span>⚽</span>الرئيسية</button>
-    <button class="text-gray-400 flex flex-col items-center"><span>📅</span>المباريات</button>
-    <button class="text-gray-400 flex flex-col items-center"><span>🏆</span>الدوريات</button>
+    <button class="text-gray-400 flex flex-col items-center"><span>📺</span>البث المباشر</button>
+    <button class="text-gray-400 flex flex-col items-center"><span>🏆</span>الترتيب</button>
   </nav>
 
 </body>
 </html>
-
